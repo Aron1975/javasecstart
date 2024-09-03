@@ -85,7 +85,6 @@ public class AdminDogController {
     public String saveDog(@Valid @ModelAttribute("dog") Dog dog, BindingResult result, Model model) {
 
         System.out.println("Save Dog..");
-        // System.out.println("red1: " + redirect);
         if (result.hasErrors()) {
             System.out.println("Form errrorr ");
             model.addAttribute("genders", genders_List);
@@ -95,8 +94,8 @@ public class AdminDogController {
             model.addAttribute("cancelRedirect", redirect);*/
             return "/admin/dogs/edit";
         }
-        System.out.println("Edited Dog gender.."+dog.getGender());
-        dogRepo.save(dog);
+        //dogRepo.save(dog);
+        dogService.updateDog(dog);
         return "redirect:/admin/dogs";
     }
 }

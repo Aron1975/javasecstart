@@ -87,21 +87,34 @@ public class DogService {
         }
     }
 
-        private int getSizeCategoryPrio (String size){
-            switch (size.toLowerCase()) {
-                case "small":
-                    return 1;
-                case "medium":
-                    return 2;
-                case "large":
-                    return 3;
-                case "extra large":
-                    return 4;
-                default:
-                    return Integer.MAX_VALUE;
+    private int getSizeCategoryPrio(String size) {
+        switch (size.toLowerCase()) {
+            case "small":
+                return 1;
+            case "medium":
+                return 2;
+            case "large":
+                return 3;
+            case "extra large":
+                return 4;
+            default:
+                return Integer.MAX_VALUE;
 
 
-            }
         }
+    }
+
+    public void updateDog(Dog dog) {
+        Dog dogToUpdate = dogRepository.findById((long)dog.getId()).orElse(null);
+        if (dogToUpdate != null) {
+            dogToUpdate.setName(dog.getName());
+            dogToUpdate.setBreed(dog.getBreed());
+            dogToUpdate.setAge(dog.getAge());
+            dogToUpdate.setSize(dog.getSize());
+            dogToUpdate.setPrice(dog.getPrice());
+            dogToUpdate.setGender(dog.getGender());
+            dogRepository.save(dogToUpdate);
+        }
+    }
 }
 
