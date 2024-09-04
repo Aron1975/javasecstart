@@ -12,7 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+/*public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="id")
@@ -30,4 +30,20 @@ public class User {
         this.password = password;
     }
 
+}*/
+
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String password;
+    private String role;
+    private boolean isEnabled = false;
+
+    public boolean isPresent() {
+        return true;
+    }
 }
